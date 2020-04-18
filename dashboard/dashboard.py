@@ -8,8 +8,6 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output, State
-import plotly.graph_objs as go
-import pandas as pd
 import subpages
 
 # Launch the application:
@@ -17,7 +15,7 @@ app = dash.Dash()
 
 # Create a Dash layout that contains a Graph component:
 app.layout = html.Div([
-    html.H1('Stock Dashboard',
+    html.H1('Investment Dashboard',
         style={'display':'inline-block', 'verticalAlign':'top', 'width':'30%'}),
     html.H1('Created by Magnus Struckmann',
         style={'display':'inline-block', 'verticalAlign':'top','float': 'right'}),
