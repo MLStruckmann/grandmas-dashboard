@@ -15,7 +15,11 @@ app = dash.Dash()
 
 # Create a Dash layout that contains a Graph component:
 app.layout = html.Div([
-    html.H1('Stock Dashboard',style={'display':'inline-block', 'verticalAlign':'top', 'width':'30%'})
+    html.H1('Stock Dashboard',
+        style={'display':'inline-block', 'verticalAlign':'top', 'width':'30%'}),
+    html.H1('Created by Magnus Struckmann',
+        style={'display':'inline-block', 'verticalAlign':'top'}),
+    
 ])
 
 # Add the server clause:
