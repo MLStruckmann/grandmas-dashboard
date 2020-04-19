@@ -7,7 +7,6 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 from datetime import datetime
-import data
 
 def stocks():
     return html.Div([
@@ -53,15 +52,15 @@ def stocks():
         ], style={'display':'inline-block'})
     ])
 
-    @app.callback(
-        Output('my_graph', 'figure'),
-        [State('ticker_collection', 'value'),
-        State('my_date_picker', 'start_date'),
-        State('my_date_picker', 'end_date')])
-    def update_graph(stock_ticker, start_date, end_date):
-        traces, start, end = data.getstocks(stock_ticker, start_date, end_date)
-        fig = {
-            'data': traces,
-            'layout': {'title':', '.join(stock_ticker)+' Closing Prices'}
-        }
-        return fig
+    # @app.callback(
+    #     Output('my_graph', 'figure'),
+    #     [State('ticker_collection', 'value'),
+    #     State('my_date_picker', 'start_date'),
+    #     State('my_date_picker', 'end_date')])
+    # def update_graph(stock_ticker, start_date, end_date):
+    #     traces, start, end = data.getstocks(stock_ticker, start_date, end_date)
+    #     fig = {
+    #         'data': traces,
+    #         'layout': {'title':', '.join(stock_ticker)+' Closing Prices'}
+    #     }
+    #     return fig

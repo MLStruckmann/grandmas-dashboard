@@ -8,15 +8,17 @@ import pandas_datareader.data as web
 from datetime import datetime, timedelta
 import os
 
-teststock = 'APPL'
+teststock = 'AAPL'
+
 start_date = datetime.today() - timedelta(days=10)
 end_date = datetime.today()
-
 start = start_date.date()
 end = end_date.date()
 
-print(os.environ.get('IEX_TOKEN'))
+IEX_key = os.environ.get('IEX_TOKEN')
 
-#df = web.DataReader(teststock, 'iex', start, end)
+print('This IEX API key was fetched:', IEX_key)
 
-#print(df.index, df.close)
+df = web.DataReader(teststock, 'iex', start, end, api_key = IEX_key)
+
+print(df.index, df.close)
