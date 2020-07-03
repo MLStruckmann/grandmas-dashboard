@@ -39,3 +39,7 @@ Thumbs.db
 # Specific files #
 ##################
 dashboard-structure.txt
+
+# Specific folders #
+####################
+envs
