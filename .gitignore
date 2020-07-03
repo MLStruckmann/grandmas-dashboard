@@ -42,4 +42,4 @@ dashboard-structure.txt
 
 # Specific folders #
 ####################
-envs
+.vscode
