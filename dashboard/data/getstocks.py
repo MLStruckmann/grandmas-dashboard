@@ -1,5 +1,5 @@
 #######
-# Objective: Get stocks data
+# Objective: Get stock data
 ######
 
 # Perform imports here:
