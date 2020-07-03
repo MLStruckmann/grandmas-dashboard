@@ -3,22 +3,15 @@
 ######
 
 # Perform imports here:
-import pandas as pd
-import pandas_datareader.data as web
 from datetime import datetime, timedelta
-import os
 
-teststock = 'AAPL'
+import yfinance as yf
 
-start_date = datetime.today() - timedelta(days=10)
-end_date = datetime.today()
-start = start_date.date()
-end = end_date.date()
+# msft = yf.Ticker("MSFT")
+# print(msft.info)
 
-IEX_key = os.environ.get('IEX_TOKEN')
-
-print('This IEX API key was fetched:', IEX_key)
-
-df = web.DataReader(teststock, 'iex', start, end, api_key = IEX_key)
-
-print(df.index, df.close)
+# get historical market data, here max is 5 years.
+data = yf.download(["V"], start="2020-06-01")
+print(data)
+#data = data[['Close']]
+#data.to_csv("export_dataframe.csv")
