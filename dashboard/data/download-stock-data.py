@@ -2,7 +2,7 @@ import pandas as pd
 import yfinance as yf
 import json
 
-stock_config = "test"
+stock_config = "usa"
 
 df = pd.read_csv(f"/home/magnus/Projekte/grandmas-dashboard/dashboard/data/config_stocks/{stock_config}.csv")
 data = df["ticker"].to_list()
@@ -11,7 +11,7 @@ data = df["ticker"].to_list()
 keys = ["longName","symbol","sector","industry","country","sharesOutstanding","longBusinessSummary","currency"]
 
 # Define start date for stock price data
-start_date = "2020-07-01"
+start_date = "2000-01-01"
 
 for stock in data:
 
@@ -22,7 +22,6 @@ for stock in data:
     stock_reference = {}
     stock_info = yf.Ticker(stock)
     stock_reference = stock_info.info
-    print(stock_reference)
     for key in keys:
         stock_dict[key] = stock_reference.get(key)
 
