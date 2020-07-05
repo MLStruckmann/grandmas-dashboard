@@ -1,0 +1,14 @@
+{
+	"name": "cosmosdb_dashboard_stocks",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "cosmosdb_dashboard_stocks",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "CosmosDbSqlApiCollection",
+		"typeProperties": {
+			"collectionName": "overall-data"
+		}
+	}
+}
