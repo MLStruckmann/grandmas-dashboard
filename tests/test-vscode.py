@@ -1,2 +1,5 @@
-dict_ = {}
-print('Test' in dict_)
+import datetime
+
+now = str(datetime.datetime.now())
+print(now)
+print(type(now))
