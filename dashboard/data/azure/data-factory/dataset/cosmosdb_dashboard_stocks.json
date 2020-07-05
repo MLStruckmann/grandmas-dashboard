@@ -1,8 +1,8 @@
 {
-	"name": "cosmosdb_financedata",
+	"name": "cosmosdb_dashboard_stocks",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "cosmosdb_financedata_stockdata",
+			"referenceName": "cosmosdb_dashboard_stocks",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],

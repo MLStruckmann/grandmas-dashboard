@@ -1,5 +1,5 @@
 {
-	"name": "stock_data_overalldata",
+	"name": "dashboard_data_input",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "mlsblobssot",
@@ -10,13 +10,15 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"folderPath": "input",
-				"container": "finance-data-overalldata"
+				"container": "dashboard-data-input"
 			}
 		},
 		"schema": {
 			"type": "object",
 			"properties": {
+				"customName": {
+					"type": "string"
+				},
 				"longName": {
 					"type": "string"
 				},
@@ -42,6 +44,9 @@
 					"type": "string"
 				},
 				"region": {
+					"type": "string"
+				},
+				"downloadTimestamp": {
 					"type": "string"
 				},
 				"closingPrice": {
