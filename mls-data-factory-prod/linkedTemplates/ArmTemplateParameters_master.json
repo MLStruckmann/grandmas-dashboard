@@ -5,10 +5,13 @@
 		"factoryName": {
 			"value": "mls-data-factory-prod"
 		},
-		"mlsblobssot_connectionString": {
+		"cosmosdb_dashboard_stocks_connectionString": {
 			"value": ""
 		},
 		"cosmosdb_financedata_stockdata_connectionString": {
+			"value": ""
+		},
+		"mlsblobssot_connectionString": {
 			"value": ""
 		},
 		"containerUri": {

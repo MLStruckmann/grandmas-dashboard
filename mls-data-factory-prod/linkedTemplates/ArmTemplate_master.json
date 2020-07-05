@@ -7,13 +7,17 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "mls-data-factory-prod"
 		},
-		"mlsblobssot_connectionString": {
+		"cosmosdb_dashboard_stocks_connectionString": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'mlsblobssot'"
+			"metadata": "Secure string for 'connectionString' of 'cosmosdb_dashboard_stocks'"
 		},
 		"cosmosdb_financedata_stockdata_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'cosmosdb_financedata_stockdata'"
+		},
+		"mlsblobssot_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'mlsblobssot'"
 		},
 		"containerUri": {
 			"type": "string",
@@ -42,11 +46,14 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"mlsblobssot_connectionString": {
-						"value": "[parameters('mlsblobssot_connectionString')]"
+					"cosmosdb_dashboard_stocks_connectionString": {
+						"value": "[parameters('cosmosdb_dashboard_stocks_connectionString')]"
 					},
 					"cosmosdb_financedata_stockdata_connectionString": {
 						"value": "[parameters('cosmosdb_financedata_stockdata_connectionString')]"
+					},
+					"mlsblobssot_connectionString": {
+						"value": "[parameters('mlsblobssot_connectionString')]"
 					}
 				}
 			},

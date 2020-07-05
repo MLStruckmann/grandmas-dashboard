@@ -6,18 +6,6 @@
 			"type": "string",
 			"metadata": "Data Factory name",
 			"defaultValue": "mls-data-factory-prod"
-		},
-		"cosmosdb_dashboard_stocks_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'cosmosdb_dashboard_stocks'"
-		},
-		"cosmosdb_financedata_stockdata_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'cosmosdb_financedata_stockdata'"
-		},
-		"mlsblobssot_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'mlsblobssot'"
 		}
 	},
 	"variables": {
@@ -278,15 +266,13 @@
 						"inputs": [
 							{
 								"referenceName": "dashboard_data_input",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						],
 						"outputs": [
 							{
 								"referenceName": "cosmosdb_dashboard_stocks",
-								"type": "DatasetReference",
-								"parameters": {}
+								"type": "DatasetReference"
 							}
 						]
 					}
@@ -352,9 +338,7 @@
 					}
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/mlsblobssot')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/BinaryDataSource_File')]",
@@ -397,9 +381,7 @@
 					}
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/mlsblobssot')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/BinaryDataSource_Folder')]",
@@ -435,9 +417,7 @@
 					}
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/mlsblobssot')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/cosmosdb_dashboard_stocks')]",
@@ -450,14 +430,11 @@
 				},
 				"annotations": [],
 				"type": "CosmosDbSqlApiCollection",
-				"schema": {},
 				"typeProperties": {
 					"collectionName": "overall-data"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/cosmosdb_dashboard_stocks')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/dashboard_data_input')]",
@@ -16447,9 +16424,7 @@
 					}
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/mlsblobssot')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/dashboard_data_processed')]",
@@ -16467,48 +16442,6 @@
 						"type": "AzureBlobStorageLocation",
 						"container": "dashboard-data-processed"
 					}
-				},
-				"schema": {}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/mlsblobssot')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/cosmosdb_dashboard_stocks')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "CosmosDb",
-				"typeProperties": {
-					"connectionString": "[parameters('cosmosdb_dashboard_stocks_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/cosmosdb_financedata_stockdata')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "CosmosDb",
-				"typeProperties": {
-					"connectionString": "[parameters('cosmosdb_financedata_stockdata_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/mlsblobssot')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('mlsblobssot_connectionString')]"
 				}
 			},
 			"dependsOn": []
