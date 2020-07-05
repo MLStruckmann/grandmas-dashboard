@@ -1,40 +1,57 @@
 import pandas as pd
 import yfinance as yf
 import json
+import datetime
 
-stock_config = "usa"
+config_directories = ["asia", "europe", "germany", "indices", "usa"]
 
-df = pd.read_csv(f"/home/magnus/Projekte/grandmas-dashboard/dashboard/data/config_stocks/{stock_config}.csv")
-data = df["ticker"].to_list()
+for stock_config in config_directories:
 
-# Define keys for stock reference data
-keys = ["longName","symbol","sector","industry","country","sharesOutstanding","longBusinessSummary","currency"]
+    df = pd.read_csv(f"/home/magnus/Projekte/grandmas-dashboard/dashboard/data/config_stocks/{stock_config}.csv")
+    #data = df["ticker"].to_list()
+    data = df.to_dict("index")
 
-# Define start date for stock price data
-start_date = "2000-01-01"
+    # Define keys for stock reference data
+    keys = ["longName","symbol","sector","industry","country","sharesOutstanding","longBusinessSummary","currency"]
 
-for stock in data:
+    # Define start date for stock price data
+    start_date = "2000-01-01"
 
-    stock_dict = {}
+    for stock in data.values():
 
-    # Download reference data
-    print(f"Download {stock} reference data")
-    stock_reference = {}
-    stock_info = yf.Ticker(stock)
-    stock_reference = stock_info.info
-    for key in keys:
-        stock_dict[key] = stock_reference.get(key)
+        stock_dict = {}
+        stock_name = stock["name"]
+        stock_ticker = stock["ticker"]
 
-    # Download stock data
-    print(f"Download {stock} stock data")
-    stock_price = []
-    stock_price = yf.download(stock, start=start_date)
-    stock_price = stock_price[["Close"]]
-    stock_price.index = stock_price.index.map(str)
-    stock_price.index = stock_price.index.map(lambda x: x[:10])
-    stock_dict["closingPrice"] = stock_price["Close"].to_dict()
+        # Add custom name from CSV
+        stock_dict["customName"] = stock_name
 
-    # Save data in json format
-    file_name = f"/home/magnus/Projekte/grandmas-dashboard/dashboard/data/downloads/{stock_config}/{stock}.json"
-    with open(file_name, "w", encoding="utf8") as fp:
-        json.dump(stock_dict, fp, ensure_ascii=False)
+        # Download reference datasss
+        print(f"Download {stock_name} reference data")
+        stock_reference = {}
+        stock_info = yf.Ticker(stock_ticker)
+        stock_reference = stock_info.info
+        for key in keys:
+            stock_dict[key] = stock_reference.get(key)
+
+        # Add regional group
+        stock_dict["region"] = stock_config.title()
+
+        # Add download timestamp
+        stock_dict["downloadTimestamp"] = str(datetime.datetime.now())
+
+        # Download stock data
+        print(f"Download {stock_name} stock data")
+        stock_price = []
+        stock_price = yf.download(stock_ticker, start=start_date)
+        stock_price = stock_price[["Close"]]
+        stock_price.index = stock_price.index.map(str)
+        stock_price.index = stock_price.index.map(lambda x: x[:10]) # Take only yyyy-mm-dd from datetime
+        stock_dict["closingPrice"] = stock_price["Close"].to_dict()
+
+        # Save data in json format
+        stock_name = stock_name.replace(".", "_") # Replace dots in stock symbols with underscore
+        stock_name = stock_name.replace("^", "") # Replace unwanted character in stock symbols
+        file_name = f"/home/magnus/Projekte/grandmas-dashboard/dashboard/data/downloads/{stock_config}/{stock_ticker}.json"
+        with open(file_name, "w", encoding="utf8") as fp:
+            json.dump(stock_dict, fp, ensure_ascii=False)
