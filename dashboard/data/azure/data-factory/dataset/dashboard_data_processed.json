@@ -1,0 +1,17 @@
+{
+	"name": "dashboard_data_processed",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "mlsblobssot",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "dashboard-data-processed"
+			}
+		}
+	}
+}
