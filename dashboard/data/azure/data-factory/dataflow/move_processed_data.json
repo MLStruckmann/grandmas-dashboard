@@ -1,6 +1,7 @@
 {
 	"name": "move_processed_data",
 	"properties": {
+		"description": "Moves processed json files in bloc container from finance-data-overalldata\n/input to finance-data-overalldata/processed",
 		"type": "MappingDataFlow",
 		"typeProperties": {
 			"sources": [
