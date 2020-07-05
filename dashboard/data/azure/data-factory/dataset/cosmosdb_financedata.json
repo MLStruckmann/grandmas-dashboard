@@ -1,0 +1,14 @@
+{
+	"name": "cosmosdb_financedata",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "cosmosdb_financedata_stockdata",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "CosmosDbSqlApiCollection",
+		"typeProperties": {
+			"collectionName": "overall-data"
+		}
+	}
+}
