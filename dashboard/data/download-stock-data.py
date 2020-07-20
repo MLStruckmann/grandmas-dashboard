@@ -3,7 +3,7 @@ import yfinance as yf
 import json
 import datetime
 
-config_directories = ["asia", "europe", "germany", "indices", "usa"]
+config_directories = ["test"] #["asia", "europe", "germany", "indices", "usa"]
 
 for stock_config in config_directories:
 
