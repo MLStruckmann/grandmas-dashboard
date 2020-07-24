@@ -1,29 +1,27 @@
-from azure.cosmos import CosmosClient
 import os
+from azure.cosmos import CosmosClient
+import azure.cosmos.exceptions as Exceptions
+import azure_config
 
-url = os.environ['DASHBOARD_COSMOS_ACCOUNT_URI']
-key = os.environ['DASHBOARD_PRIMARY_KEY']
+url = azure_config.url
+key = azure_config.key
 
 client = CosmosClient(url, key)
 
-database_name = 'stock-data'
-database = client.create_database_if_not_exists(id=database_name)
+databases = list(client.list_databases())
 
-container_name = 'overall-data'
-container = database.create_container_if_not_exists(
-    id=container_name, 
-    partition_key=PartitionKey(path="/sector"),
-    offer_throughput=400
-)
+for database in databases:
+    print(database['id'])
+
+database = client.get_database_client(database="stock-data")
+container = database.get_container_client(container="overall-data")
 
 query = "SELECT * FROM c WHERE c.symbol IN ('TWTR', 'PTR')"
 
 items = list(container.query_items(
     query=query,
-    enable_cross_partition_query=True
-))
+    enable_cross_partition_query=True))
 
 request_charge = container.client_connection.last_response_headers['x-ms-request-charge']
 
 print(f'Query returned {len(items)} items. Operation consumed {request_charge} request units')
-print(items)
